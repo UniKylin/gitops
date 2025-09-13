@@ -12,7 +12,7 @@ func main() {
 	// Define a simple hi gin endpoint
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"message": "Hi Gin!",
+			"message": ">>> Hi Gin...",
 		})
 	})
 

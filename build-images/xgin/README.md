@@ -65,6 +65,24 @@ xgin    2   077cd450cefd   38 minutes ago   863MB
 xgin    1   d835e33f60c8   54 minutes ago   1.73GB
 ```
 
+### 第七步：使用缓存
+是能明显提升缓存命中率，从而减少构建时间！
+```bash
+$ docker build -t xgin:7 -f Dockerfile-7 .        
+[+] Building 16.9s (14/14) FINISHED                                         docker:desktop-linux
+ => [internal] load build definition from Dockerfile-7                                      0.0s
+ => => transferring dockerfile: 436B                                                        0.0s
+ ...
+
+~/gitops/build-images/xgin on  master! ⌚ 23:57:43
+$ docker build -t xgin:8 -f Dockerfile-7 .
+[+] Building 7.5s (13/13) FINISHED                                          docker:desktop-linux
+ => [internal] load build definition from Dockerfile-7                                      0.0s
+ => => transferring dockerfile: 436B                                                        0.0s
+...
+```
+修改代码不会影响项目依赖的重新下载！缩短构建时间！
+
 
 
 使用 Gin 框架构建的简单 HTTP API。
