@@ -2,13 +2,12 @@
   <div class="app">
     <header class="header">
       <h1>🎉 Welcome to Xvue!</h1>
-      <p>A Vue 3 Hello World Application</p>
+      <p>A Vue 3 Application</p>
     </header>
     
     <main class="main">
       <div class="card">
-        <h2>Hello Vue 3! 👋</h2>
-        <p>This is your first Vue 3 application.</p>
+        <h2>Hello App 👋</h2>
         
         <div class="counter">
           <p>Counter: {{ count }}</p>

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: redis-ds
+  name: redis-ds
+spec:
+  selector:
+    matchLabels:
+      app: redis-ds
+  template:
+    metadata:
+      labels:
+        app: redis-ds
+    spec:
+      containers:
+      - image: redis:latest
+        name: redis
+        ports:
+        - containerPort: 6379  
