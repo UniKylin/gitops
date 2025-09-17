@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: xgin-test
+  labels:
+    app: xgin-test
+spec:
+  containers:
+  - name: xgin
+    image: xgin:9
+    imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 9000   # 容器内服务端口, 这个和 Docker 中 -p 参数比较相似

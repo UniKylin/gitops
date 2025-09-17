@@ -1,0 +1,17 @@
+FROM golang:1.23 AS builder
+WORKDIR /app
+
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 go build -o xgin
+
+FROM alpine:3.20
+WORKDIR /app
+COPY --from=builder /app/xgin ./xgin
+
+# 安装 tar 方便 kubectl cp
+RUN apk add --no-cache tar
+
+CMD ["/app/xgin"]
+

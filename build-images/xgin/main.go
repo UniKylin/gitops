@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -8,6 +9,7 @@ import (
 
 func main() {
 	r := gin.Default()
+	fmt.Println(">>> init gin success...")
 
 	// Define a simple hi gin endpoint
 	r.GET("/", func(c *gin.Context) {
@@ -17,5 +19,6 @@ func main() {
 	})
 
 	// Start the server on port 9000
+	fmt.Println(">>> Start server...")
 	r.Run(":9000")
 }
