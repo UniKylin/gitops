@@ -1,0 +1,58 @@
+services:
+  # PostgreSQL数据库
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_DB: todo_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./api-server/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+    networks:
+      - app_network
+
+  # 后端API服务
+  api-server:
+    build:
+      context: ./api-server
+      dockerfile: Dockerfile
+    container_name: api-server
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=password
+      - DB_NAME=todo_db
+    ports:
+      - "9000:9000"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    networks:
+      - app_network
+
+  # 前端服务
+  fe:
+    build:
+      context: ./fe
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - api-server
+    restart: unless-stopped
+    networks:
+      - app_network
+
+volumes:
+  postgres_data:
+
+networks:
+  app_network:
+    driver: bridge

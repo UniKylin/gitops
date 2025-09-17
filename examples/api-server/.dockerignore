@@ -1,0 +1,12 @@
+# API Server .dockerignore
+main
+*.log
+.git
+.gitignore
+README.md
+.env
+.idea
+.vscode
+*.swp
+*.swo
+*~
